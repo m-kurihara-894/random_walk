@@ -18,7 +18,5 @@ src/p_3.jlの内容は
    - $P (X_n = (\pm 1, 0, 0)) = P (X_n = (0, \pm 1, 0)) = P (X_n = (0, 0, \pm 1)) = \frac{1}{6}$
 
    このとき、確率過程$S_n (= \sum_{k = 1}^n X_k)$（単純ランダムウォークという）に対し
-   ```math
-   P(\exist n \in \mathbb{Z}_+ \mathrm{s.t.} S_n = 0)
-   ```
+   $$P(\exist n \in \mathbb{Z}_+ \mathrm{s.t.} S_n = 0)$$
    を再起確率という。
