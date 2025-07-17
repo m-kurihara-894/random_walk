@@ -17,6 +17,16 @@ p_{x, y} = \frac{1}{2} \delta_{x, x - 1} + \frac{1}{2} \delta_{x, x + 1}
 ```
 と表せる（ $` \delta_{a, b} `$ はクロネッカーのデルタ）。
 
+これを関数 $` f (x) `$ で表すと
+```math
+f (x) = 
+\begin{cases}
+    \frac{1}{2} & x \in \pm 1 \\
+    0 & \mathrm{otherwise}
+  \end{cases}
+```
+と表せる。
+
 ここで、格子点 $` x \in \mathbb{Z} `$ で定義された関数 $` f (x) `$ と $` k \in [- \pi, \pi] `$ に対するFourier変換（離散時間Fourier変換：DTFTという）：
 ```math
 \hat{f} (k) \equiv \sum_{x \in \mathbb{Z}} e^{- i k x} f (x), \quad f (x) \equiv \int_{- \pi}^\pi \hat{f} (k)\,e^{i k x}\,\frac{d k}{2 \pi}
@@ -67,6 +77,16 @@ p_{\vec{x}, \vec{y}} = \frac{1}{6} \delta_{(x_1, x_2, x_3), (x_1 - 1, x_2, x_3)}
 ```
 と表せる（ $` \delta_{\vec{a}, \vec{b}} `$ はクロネッカーのデルタ）。
 
+これを関数 $` f (\vec{x}) `$ で表すと
+```math
+f (\vec{x}) = 
+\begin{cases}
+    \frac{1}{6} & \vec{x} \in {\pm 1, 0, 0}, {0, \pm 1, 0}, {0, 0, \pm 1} \\
+    0 & \mathrm{otherwise}
+  \end{cases}
+```
+と表せる。
+
 格子点 $` \vec{x} \in \mathbb{Z} \times \mathbb{Z} \times \mathbb{Z} `$ で定義された関数 $` f (\vec{x}) `$ と $` \vec{k} \in [- \pi, \pi] \times [- \pi, \pi] \times [- \pi, \pi] `$ に対するFourier変換（ $` \vec{k} = (k_1, k_2, k_3) `$ とした）：
 ```math
 \hat{f} (\vec{k}) \equiv \sum_{\vec{x} \in \mathbb{Z} \times \mathbb{Z} \times \mathbb{Z}} e^{- i \vec{k} \vec{x}} f (\vec{x}), \quad f (\vec{x}) \equiv \int_{- \pi}^\pi \int_{- \pi}^\pi \int_{- \pi}^\pi \hat{f} (\vec{k})\,e^{i \vec{k} \cdot \vec{x}}\,\frac{d^3 \vec{k}}{(2 \pi)^3}
@@ -88,16 +108,16 @@ P_\ell ((0, 0, 0)) = \int_{- \pi}^\pi \int_{- \pi}^\pi \int_{- \pi}^\pi (\hat{f}
 
  $` f (\vec{x}) `$ のFourier変換は
 ```math
-\hat{f} (\vec{k}) = \frac{1}{6} e^{- i (k_1, k_2, k_3) \cdot (x_1 - 1, x_2, x_3)} + \frac{1}{6} e^{- i (k_1, k_2, k_3) \cdot (x_1 + 1, x_2, x_3)} + \frac{1}{6} e^{- i (k_1, k_2, k_3) \cdot (x_1, x_2 - 1, x_3)} + \frac{1}{6} e^{- i (k_1, k_2, k_3) \cdot (x_1, x_2 + 1, x_3)} + \frac{1}{6} e^{- i (k_1, k_2, k_3) \cdot (x_1, x_2, x_3 - 1)} + \frac{1}{6} e^{- i (k_1, k_2, k_3) \cdot (x_1, x_2, x_3 + 1)} = \cos k
+\hat{f} (\vec{k}) = \frac{1}{6} e^{- i (k_1, k_2, k_3) \cdot (- 1, 0, 0)} + \frac{1}{6} e^{- i (k_1, k_2, k_3) \cdot (1, 0, 0)} + \frac{1}{6} e^{- i (k_1, k_2, k_3) \cdot (0, - 1, 0)} + \frac{1}{6} e^{- i (k_1, k_2, k_3) \cdot (0, 1, 0)} + \frac{1}{6} e^{- i (k_1, k_2, k_3) \cdot (0, 0, - 1)} + \frac{1}{6} e^{- i (k_1, k_2, k_3) \cdot (0, 0, 1)} = \frac{1}{3} \cos k_1 + \frac{1}{3} \cos k_2 + \frac{1}{3} \cos k_3
 ```
 より
 ```math
-\sum_{\ell = 0}^\infty P_\ell (0) = \int_{- \pi}^\pi \frac{1}{1 - \hat{f} (k)}\,\frac{d k}{2 \pi}  = \int_{- \pi}^\pi \frac{1}{1 - \cos k}\,\frac{d k}{2 \pi} = \infty
+u (3) \equiv \sum_{\ell = 0}^\infty P_\ell ((0, 0, 0)) = \int_{- \pi}^\pi \int_{- \pi}^\pi \int_{- \pi}^\pi \frac{1}{1 - \hat{f} (\vec{k})}\,\frac{d \vec{k}}{(2 \pi)^3}  = \int_{- \pi}^\pi \int_{- \pi}^\pi \int_{- \pi}^\pi \frac{3}{3 - \cos k_1 - \cos k_2 - \cos k_3}\,\frac{d \vec{k}}{(2 \pi)^3}
 ```
 である。
 
-1次元ランダムウォークの再帰確率 $` p (1) `$ は
+3次元ランダムウォークの再帰確率 $` p (3) `$ は
 ```math
-p (1) = 1 - \frac{1}{\sum_{\ell = 0}^\infty P_\ell (0)} = 1
+p (3) = 1 - \frac{1}{u (3)}
 ```
-である（最初の等号の導出は資料1の3.2.3を参照）。
+より、 $` u (3) `$ を求めれば、再帰確率 $` p (3) `$ が求められる。
