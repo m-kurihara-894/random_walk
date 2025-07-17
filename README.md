@@ -19,7 +19,7 @@ p_{x, y} = \frac{1}{2} \delta_{x, x - 1} + \frac{1}{2} \delta_{x, x + 1}
 
 ここで、Fourier変換（離散時間Fourier変換：DTFTという）：
 ```math
-\hat{f} (k) \equiv \sum_{x \in \mathbb{Z}} e^{- i k x} f (x), \quad f (x) \equiv \int_{- \pi}^\pi \hat{f} (k)\,e^{i k z}\,\frac{d k}{2 \pi}
+\hat{f} (k) \equiv \sum_{x \in \mathbb{Z}} e^{- i k x} f (x), \quad f (x) \equiv \int_{- \pi}^\pi \hat{f} (k)\,e^{i k x}\,\frac{d k}{2 \pi}
 ```
 における畳み込み：
 ```math
@@ -31,11 +31,11 @@ p_{x, y} = \frac{1}{2} \delta_{x, x - 1} + \frac{1}{2} \delta_{x, x + 1}
 ```
 を満たす。
 
-原点から出発したランダムウォークが時刻 $` n `$ に点 $` z `$ にいる確率 $` P_\ell (z) `$ は $` \ell `$ 個の $` f (x) = p_{0, x} `$ の畳み込み：
+原点から出発したランダムウォークが時刻 $` \ell `$ に点 $` z `$ にいる確率 $` P_\ell (z) `$ は $` \ell `$ 個の $` f (x) = p_{0, x} `$ の畳み込み：
 ```math
 P_\ell (z) = (f \ast f \ast \dots \ast f) (z) = \int_{- \pi}^\pi (\hat{f} (k))^\ell\,e^{i k z}\,\frac{d k}{2 \pi}
 ```
-で表せて（畳み込みは考えうる全ての可能性を足し上げていると思えばよい）、特に $` z = 0 `$ （原点に戻る）の場合は
+で表せて（畳み込みは今の場合においては、原点から $` \ell `$ 回の操作で点 $` z `$ に到着できる全ての可能性を足し上げていると思えばよい）、特に $` z = 0 `$ （原点に戻る）の場合は
 ```math
 P_\ell (0) = \int_{- \pi}^\pi (\hat{f} (k))^\ell\,\frac{d k}{2 \pi}
 ```
@@ -62,3 +62,18 @@ p (1) = 1 - \frac{1}{\sum_{\ell = 0}^\infty P_\ell (0)} = 1
 p_{\vec{x}, \vec{y}} = \frac{1}{6} \delta_{(x_1, x_2, x_3), (x_1 - 1, x_2, x_3)} + \frac{1}{6} \delta_{(x_1, x_2, x_3), (x_1 + 1, x_2, x_3)} + \frac{1}{6} \delta_{(x_1, x_2, x_3), (x_1, x_2 - 1, x_3)} + \frac{1}{6} \delta_{(x_1, x_2, x_3), (x_1, x_2 + 1, x_3)} + \frac{1}{6} \delta_{(x_1, x_2, x_3), (x_1, x_2, x_3 - 1)} + \frac{1}{6} \delta_{(x_1, x_2, x_3), (x_1, x_2, x_3 + 1)}
 ```
 と表せる（ $` \delta_{\vec{a}, \vec{b}} `$ はクロネッカーのデルタ）。
+
+Fourier変換（ $` \vec{k} = (k_1, k_2, k_3) `$ とした）：
+```math
+\hat{f} (\vec{k}) \equiv \sum_{\vec{x} \in \mathbb{Z} \times \mathbb{Z} \times \mathbb{Z}} e^{- i \vec{k} \vec{x}} f (\vec{x}), \quad f (\vec{x}) \equiv \int_{- \pi}^\pi \int_{- \pi}^\pi \int_{- \pi}^\pi \hat{f} (\vec{k})\,e^{i \vec{k} \cdot \vec{x}}\,\frac{d k_1 d k_2 d k_3}{(2 \pi)^3}
+```
+における畳み込み：
+```math
+(f \ast g) (\vec{x}) \equiv \sum_{\vec{y} \in \mathbb{Z} \times \mathbb{Z} \times \mathbb{Z}} f (\vec{x} - \vec{y}) g (\vec{y})
+```
+を用いると、
+原点から出発したランダムウォークが時刻 $` \ell `$ に点 $` \vec{z} = (z_!, z_2, z_3) `$ にいる確率 $` P_\ell (\vec{z}) `$ は $` \ell `$ 個の $` f (\vec{x}) = p_{(0, 0, 0), \vec{x}} `$ の畳み込み：
+```math
+P_\ell (\bec{z}) = (f \ast f \ast \dots \ast f) (\bec{z}) = \int_{- \pi}^\pi \int_{- \pi}^\pi \int_{- \pi}^\pi (\hat{f} (\vec{k}))^\ell\,e^{i \vec{k} \cdot \vec{z}}\,\frac{d k_1 d k_2 d k_3}{(2 \pi)^3}
+```
+で表せて
