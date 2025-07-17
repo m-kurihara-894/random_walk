@@ -1,10 +1,15 @@
 module random_walk
-
+# 多重積分のパッケージとしてHCubature, Cubature, Cubaなどが知られている。
+# ここではCubaを使う。
 using Cuba
 
+# (3 / (2 π)^3 ) * ∫_-π^π ∫_-π^π ∫_-π^π 1 / (3 - cos(x) - cos(y) - cos(z)) dx dy dzを計算したい
+# まずは、∫_-π^π ∫_-π^π ∫_-π^π 1 / (3 - cos(x) - cos(y) - cos(z)) dx dy dzを計算したい
 function u3_cuba()
     function integrand(x)
-        θ = 2π .* x .- π  # [0,1]^3 → [-π, π]^3 に変換
+        # Cubaの積分区間は[0,1]^3なので、変数変換をして積分区間を対応させたい
+        # [0,1]^3 → [-π, π]^3 に変換
+        θ = 2π .* x .- π
         denom = 3 - sum(cos.(θ))
         if abs(denom) < 1e-12 || !isfinite(denom)
             return 0.0
