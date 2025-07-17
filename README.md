@@ -8,13 +8,14 @@ src/p_3.jlの内容は
 - 数値結果
     - https://mathworld.wolfram.com/PolyasRandomWalkConstants.html
 
-に基づく。
+に基づき、3次元対称単純ランダムウォークの再帰確率（有限回数で再び原点に戻る確率）を数値的に求めることが目的である。
 
 大雑把な流れを説明すると、
 
-1. 3次元対称単純ランダムウォークの再帰確率（有限回数で再び原点に戻る確率）を求めるために、
-確率変数$X_n$は
+1. 以下の3つを満たす確率変数$X_n$を考える：
 - $\mathbb{Z} \times \mathbb{Z} \times \mathbb{Z}$に値を取る
 - 独立かつ同分布（i.i.d. = independent idencally distributedという）
 - $P (X_n = (\pm 1, 0, 0)) = P (X_n = (0, \pm 1, 0)) = P (X_n = (0, 0, \pm 1)) = \frac{1}{6}$
-を満たす。
+
+   このとき、確率過程$S_n (= \sum_{k = 1}^n X_k)$（単純ランダムウォークという）に対し
+   
