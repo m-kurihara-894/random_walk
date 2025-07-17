@@ -19,6 +19,6 @@ src/p_3.jlの内容は
 
    このとき、確率過程$S_n (= \sum_{k = 1}^n X_k)$（単純ランダムウォークという）に対し
    ```math
-   P(S_n = 0 \text{となる} n \in \mathbb{Z}_+ \text{が存在})
+   P(\exist n \in \mathbb{Z}_+ \mathrm{s.t.} S_n = 0)
    ```
    を再起確率という。
