@@ -83,7 +83,7 @@ p_{\vec{x}, \vec{y}} = \frac{1}{6} \delta_{(x_1, x_2, x_3), (x_1 - 1, x_2, x_3)}
 ```math
 f (\vec{x}) = 
 \begin{cases}
-    \frac{1}{6} & \vec{x} \in {\pm 1, 0, 0}, {0, \pm 1, 0}, {0, 0, \pm 1} \\
+    \frac{1}{6} & \vec{x} \in (\pm 1, 0, 0), (0, \pm 1, 0), (0, 0, \pm 1) \\
     0 & \mathrm{otherwise}
   \end{cases}
 ```
@@ -127,6 +127,18 @@ p (3) = 1 - \frac{1}{u (3)}
 ---
 
 ### Cubaを用いた $` u (3) `$ の数値解
-Cubaを用いて $` u (3) `$ の値を求める。
+Cubaを用いて $` u (3) `$ の値を求めるが、非積分関数が原点において発散してしまう。
+しかしながら、今回は原点近傍の値を捨てても積分結果に及ぼす影響が小さいことが分かる。
 
-そもそも $` u (3) `$ は
+原点を中心とする半径 $` \rho `$ 以下の球 $` B_\rho `$ を考える。
+
+積分範囲について
+```math
+[- \pi, \pi] \times [- \pi, \pi] \times [- \pi, \pi] = B_\rho \Bigcup ([- \pi, \pi] \times [- \pi, \pi] \times [- \pi, \pi] \setminus B_\rho)
+```
+と分けて、 $` B_\rho `$ において非積分関数を積分してみると
+```math
+\int_{B_\rho} \frac{3}{3 - \cos k_1 - \cos k_2 - \cos k_3}\,\frac{d \vec{k}}{(2 \pi)^3} \leq \int_{B_\rho} \frac{6}{k_1^2 + k_2^2 + k_3^2}\,\frac{d \vec{k}}{(2 \pi)^3} = \frac{3 \rho}{\pi^2}
+```
+となるため、十分に小さい $` \rho `$ を取れば、原点近傍における積分の寄与は無視できる。
+そのため、p_3.jlにおいては、場合分けで発散する点の値を0としている。
