@@ -3,24 +3,31 @@
 src/p_3.jlの内容は
 
 - 理論的な側面
-    - 資料1：https://www.math.kyoto-u.ac.jp/~ichiro/lectures/07bpr.pdf
-    - 資料2：https://www2.math.kyushu-u.ac.jp/~hara/lectures/02/pr-grad-all.pdf
+    - 資料1：https://www2.math.kyushu-u.ac.jp/~hara/lectures/02/pr-grad-all.pdf
 - 数値結果
-    - 資料3：https://mathworld.wolfram.com/PolyasRandomWalkConstants.html
+    - 資料2：https://mathworld.wolfram.com/PolyasRandomWalkConstants.html
 
 に基づき、3次元対称単純ランダムウォークの再帰確率（有限回数で再び原点に戻る確率）を数値的に求めることが目的である。
 
 大雑把な流れを説明すると、
 
-1. 以下の3つを満たす確率変数$$X_n$$を考える：
-   - $\mathbb{Z} \times \mathbb{Z} \times \mathbb{Z}$に値を取る
-   - 独立かつ同分布（i.i.d. = independent idencally distributedという）
-   - $$P (X_n = (\pm 1, 0, 0)) = P (X_n = (0, \pm 1, 0)) = P (X_n = (0, 0, \pm 1)) = \frac{1}{6}. $$
+1. 1次元対称単純ランダムウォークにおいて、点$x$が次に点$y$に飛ぶ確率$p_{x, y}$は
+```math
+p_{x, y} = \frac{1}{2} \delta_{x, x - 1} + \frac{1}{2} \delta_{x, x + 1}
+```
+と表せて（$\delta_{a, b}$はクロネッカーのデルタ）、
+畳み込み：
+```math
+(f \ast g) (x) \equiv \sum_{y \in \mathbb{Z}} f (x - y) g (y)
+```
+を用いると、$f \ast g$のFourier変換$\widehat{f \ast g}$は
+```math
+\widehat{f \ast g} (k) = \hat{f} (k) \hat{g} (k)
+```
+を満たす。
 
-   このとき、確率過程$$S_n (= \sum_{k = 1}^n X_k)$$（単純ランダムウォークという）に対し
-
-   $$P(\exists n \in \mathbb{Z}_+ \mathrm{s.t.} S_n = (0, 0, 0))$$
-
-   を再帰確率（有限回で原点に戻る確率）という。
-
-2. 再帰確率は
+原点から出発したランダムウォークが時刻$n$に点$z$にいる確率$P_\ell (z)$は$\ell$個の$f (x) = p_{0, x}$の畳み込みで書ける：
+```math
+P_\ell (z) = (f \ast f \ast \dots \ast f) (z)
+```
+2. 再帰確率は原点に
