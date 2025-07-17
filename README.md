@@ -19,11 +19,9 @@ p_{x, y} = \frac{1}{2} \delta_{x, x - 1} + \frac{1}{2} \delta_{x, x + 1}
 
 ここで、Fourier変換（離散時間Fourier変換：DTFTという）：
 ```math
-\hat{f} (k) \equiv \sum_{x \in \mathbb{Z}} e^{- i k x} f (x), \quad f (x) = \int_{- \pi}^\pi \hat{f} (k)\,e^{i k z}\,\frac{d k}{2 \pi}
+\hat{f} (k) \equiv \sum_{x \in \mathbb{Z}} e^{- i k x} f (x), \quad f (x) \equiv \int_{- \pi}^\pi \hat{f} (k)\,e^{i k z}\,\frac{d k}{2 \pi}
 ```
-を定義する。
-
-畳み込み：
+における畳み込み：
 ```math
 (f \ast g) (x) \equiv \sum_{y \in \mathbb{Z}} f (x - y) g (y)
 ```
@@ -42,7 +40,12 @@ P_\ell (z) = (f \ast f \ast \dots \ast f) (z) = \int_{- \pi}^\pi (\hat{f} (k))^\
 P_\ell (0) = \int_{- \pi}^\pi (\hat{f} (k))^\ell\,\frac{d k}{2 \pi}
 ```
 である。
-再帰確率は
+
+ $` f (x) `$ のFourier変換は $` \hat{f} (k) = \cos k `$ より、再帰確率は
+```math
+\sum_{\ell = 0}^\infty P_\ell (0) = \int_{- \pi}^\pi \frac{1}{1 - \hat{f} (k)}\,\frac{d k}{2 \pi}  = \int_{- \pi}^\pi \frac{1}{1 - \cos k}\,\frac{d k}{2 \pi}
+```
+である。
 
 
 2. 再帰確率は原点に
