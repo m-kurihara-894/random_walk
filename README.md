@@ -35,17 +35,23 @@ p_{x, y} = \frac{1}{2} \delta_{x, x - 1} + \frac{1}{2} \delta_{x, x + 1}
 ```math
 P_\ell (z) = (f \ast f \ast \dots \ast f) (z) = \int_{- \pi}^\pi (\hat{f} (k))^\ell\,e^{i k z}\,\frac{d k}{2 \pi}
 ```
-で表せて、特に、 $` z = 0 `$ （原点に戻る）の場合は
+で表せて（畳み込みは考えうる全ての可能性を足し上げていると思えばよい）、特に $` z = 0 `$ （原点に戻る）の場合は
 ```math
 P_\ell (0) = \int_{- \pi}^\pi (\hat{f} (k))^\ell\,\frac{d k}{2 \pi}
 ```
 である。
 
- $` f (x) `$ のFourier変換は $` \hat{f} (k) = \cos k `$ より、再帰確率は
+ $` f (x) `$ のFourier変換は $` \hat{f} (k) = \cos k `$ より
 ```math
-\sum_{\ell = 0}^\infty P_\ell (0) = \int_{- \pi}^\pi \frac{1}{1 - \hat{f} (k)}\,\frac{d k}{2 \pi}  = \int_{- \pi}^\pi \frac{1}{1 - \cos k}\,\frac{d k}{2 \pi}
+\sum_{\ell = 0}^\infty P_\ell (0) = \int_{- \pi}^\pi \frac{1}{1 - \hat{f} (k)}\,\frac{d k}{2 \pi}  = \int_{- \pi}^\pi \frac{1}{1 - \cos k}\,\frac{d k}{2 \pi} = \infty
 ```
 である。
 
+1次元ランダムウォークの再帰確率 $` p (1) `$ は
+```math
+p (1) = 1 - \frac{1}{\sum_{\ell = 0}^\infty P_\ell (0)} = 1
+```
+である（最初の等号の導出は資料1の3.2.3を参照）。
 
-2. 再帰確率は原点に
+
+2. 1次元の場合と同様に3次元対称単純ランダムウォークの再帰確率 $` p (3) `$ を考えると、
