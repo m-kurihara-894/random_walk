@@ -134,6 +134,9 @@ p (3) = 1 - \frac{1}{u (3)}
 ここに注意点や補足などを書けます。
 </div>
 
+<hr style="border: none; height: 3px; background-color: #007acc; margin: 1em 0;" />
+
+
 <div style="background: #e0f7fa; border-left: 4px solid #00acc1; padding: 10px; margin: 10px 0;">
 📘 補足：このセクションは関連情報を含みます。
 </div>
