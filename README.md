@@ -9,13 +9,20 @@ src/p_3.jlの内容は
 
 に基づき、3次元対称単純ランダムウォークの再帰確率（有限回数で再び原点に戻る確率）を数値的に求めることが目的である。
 
-大雑把な流れを説明すると、
+---
 
 1. 1次元対称単純ランダムウォークにおいて、点 $` x `$ が次に点 $` y `$ に飛ぶ確率 $` p_{x, y} `$ は
 ```math
 p_{x, y} = \frac{1}{2} \delta_{x, x - 1} + \frac{1}{2} \delta_{x, x + 1}
 ```
-と表せて（ $` \delta_{a, b} `$ はクロネッカーのデルタ）、
+と表せる（ $` \delta_{a, b} `$ はクロネッカーのデルタ）。
+
+ここで、Fourier変換（離散時間Fourier変換：DTFTという）：
+```math
+\hat{f} (k) \equiv \sum_{x \in \mathbb{Z}} e^{- i k x} f (x), \quad f (x) = \int_{- \pi}^\pi \hat{f} (k)\,e^{i k z}\,\frac{d k}{2 \pi}
+```
+を定義する。
+
 畳み込み：
 ```math
 (f \ast g) (x) \equiv \sum_{y \in \mathbb{Z}} f (x - y) g (y)
@@ -28,12 +35,14 @@ p_{x, y} = \frac{1}{2} \delta_{x, x - 1} + \frac{1}{2} \delta_{x, x + 1}
 
 原点から出発したランダムウォークが時刻 $` n `$ に点 $` z `$ にいる確率 $` P_\ell (z) `$ は $` \ell `$ 個の $` f (x) = p_{0, x} `$ の畳み込み：
 ```math
-P_\ell (z) = (f \ast f \ast \dots \ast f) (z) = \int_{- \pi}^\pi (\hat{f} (k))^\ell\,e^{i \k z}\,\frac{d k}{2 \pi}
+P_\ell (z) = (f \ast f \ast \dots \ast f) (z) = \int_{- \pi}^\pi (\hat{f} (k))^\ell\,e^{i k z}\,\frac{d k}{2 \pi}
 ```
-で表せて、特に、$z = 0$（原点に戻る）の場合は
+で表せて、特に、 $` z = 0 `$ （原点に戻る）の場合は
 ```math
 P_\ell (0) = \int_{- \pi}^\pi (\hat{f} (k))^\ell\,\frac{d k}{2 \pi}
 ```
 である。
+再帰確率は
+
 
 2. 再帰確率は原点に
