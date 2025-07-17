@@ -9,7 +9,5 @@ src/p_3.jlの内容は https://www2.math.kyushu-u.ac.jp/~hara/lectures/02/pr-gra
 - $\mathbb{Z} \times \mathbb{Z} \times \mathbb{Z}$に値を取る
 - 独立
 - 同分布
-- $$
-  P (X_n = (\pm 1, 0, 0)) = P (X_n = (0, \pm 1, 0)) = P (X_n = (0, 0, \pm 1)) = \frac{1}{6}
-  $$
+- $P (X_n = (\pm 1, 0, 0)) = P (X_n = (0, \pm 1, 0)) = P (X_n = (0, 0, \pm 1)) = \frac{1}{6}$
 を満たす。
