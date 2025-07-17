@@ -11,7 +11,8 @@ src/p_3.jlは
 
 ---
 
-1. 1次元対称単純ランダムウォークにおいて、点 $` x `$ が次に点 $` y `$ に飛ぶ確率 $` p_{x, y} `$ は
+### 1次元対称単純ランダムウォークとFourier変換
+1次元対称単純ランダムウォークにおいて、点 $` x `$ が次に点 $` y `$ に飛ぶ確率 $` p_{x, y} `$ は
 ```math
 p_{x, y} = \frac{1}{2} \delta_{x, x - 1} + \frac{1}{2} \delta_{x, x + 1}
 ```
@@ -69,7 +70,8 @@ p (1) = 1 - \frac{1}{\sum_{\ell = 0}^\infty P_\ell (0)} = 1
 
 ---
 
-2. 1次元の場合と同様に3次元対称単純ランダムウォークの再帰確率 $` p (3) `$ を考える。
+### 3次元対称単純ランダムウォークとFourier変換
+1次元の場合と同様に3次元対称単純ランダムウォークの再帰確率 $` p (3) `$ を考える。
 
 点 $` \vec{x} = (x_1, x_2, x_3) `$ が次に点 $` \vec{y} = (y_1, y_2, y_3) `$ に飛ぶ確率 $` p_{\vec{x}, \vec{y}} `$ は
 ```math
@@ -124,19 +126,7 @@ p (3) = 1 - \frac{1}{u (3)}
 
 ---
 
-3. Cubaを用いて $` u (3) `$ の値を求める。
+### Cubaを用いた $` u (3) `$ の数値解
+Cubaを用いて $` u (3) `$ の値を求める。
 
 そもそも $` u (3) `$ は
-
-
-<div style="border-left: 4px solid #007acc; padding-left: 10px; margin: 10px 0;">
-これは色付き縦棒を使ったブロックです。<br>
-ここに注意点や補足などを書けます。
-</div>
-
-<hr style="border: none; height: 3px; background-color: #007acc; margin: 1em 0;" />
-
-
-<div style="background: #e0f7fa; border-left: 4px solid #00acc1; padding: 10px; margin: 10px 0;">
-📘 補足：このセクションは関連情報を含みます。
-</div>
