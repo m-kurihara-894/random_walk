@@ -134,7 +134,7 @@ Cubaを用いて $` u (3) `$ の値を求めるが、非積分関数が原点に
 
 積分範囲について
 ```math
-[- \pi, \pi] \times [- \pi, \pi] \times [- \pi, \pi] = B_\rho \bigcup ([- \pi, \pi] \times [- \pi, \pi] \times [- \pi, \pi] \setminus B_\rho)
+[- \pi, \pi] \times [- \pi, \pi] \times [- \pi, \pi] = B_\rho \cup ([- \pi, \pi] \times [- \pi, \pi] \times [- \pi, \pi] \setminus B_\rho)
 ```
 と分けて、 $` B_\rho `$ において非積分関数を積分してみると
 ```math
