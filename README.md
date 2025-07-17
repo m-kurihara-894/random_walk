@@ -11,24 +11,29 @@ src/p_3.jlの内容は
 
 大雑把な流れを説明すると、
 
-    1. 1次元対称単純ランダムウォークにおいて、点 $` x `$ が次に点 $` y `$ に飛ぶ確率 $` p_{x, y} `$ は
-    ```math
-    p_{x, y} = \frac{1}{2} \delta_{x, x - 1} + \frac{1}{2} \delta_{x, x + 1}
-    ```
-    と表せて（ $` \delta_{a, b} `$ はクロネッカーのデルタ）、
-    畳み込み：
-    ```math
-    (f \ast g) (x) \equiv \sum_{y \in \mathbb{Z}} f (x - y) g (y)
-    ```
-    を用いると、 $` f \ast g `$ のFourier変換 $` \widehat{(f \ast g)} `$ は
-    ```math
-    \widehat{(f \ast g)} (k) = \hat{f} (k) \hat{g} (k)
-    ```
-    を満たす。
+1. 1次元対称単純ランダムウォークにおいて、点 $` x `$ が次に点 $` y `$ に飛ぶ確率 $` p_{x, y} `$ は
+```math
+p_{x, y} = \frac{1}{2} \delta_{x, x - 1} + \frac{1}{2} \delta_{x, x + 1}
+```
+と表せて（ $` \delta_{a, b} `$ はクロネッカーのデルタ）、
+畳み込み：
+```math
+(f \ast g) (x) \equiv \sum_{y \in \mathbb{Z}} f (x - y) g (y)
+```
+を用いると、 $` f \ast g `$ のFourier変換 $` \widehat{(f \ast g)} `$ は
+```math
+\widehat{(f \ast g)} (k) = \hat{f} (k) \hat{g} (k)
+```
+を満たす。
 
-    原点から出発したランダムウォークが時刻 $` n `$ に点 $` z `$ にいる確率 $` P_\ell (z) `$ は $` \ell `$ 個の $` f (x) = p_{0, x} `$ の畳み込みで書ける：
-    ```math
-    P_\ell (z) = (f \ast f \ast \dots \ast f) (z)
-    ```
+原点から出発したランダムウォークが時刻 $` n `$ に点 $` z `$ にいる確率 $` P_\ell (z) `$ は $` \ell `$ 個の $` f (x) = p_{0, x} `$ の畳み込み：
+```math
+P_\ell (z) = (f \ast f \ast \dots \ast f) (z) = \int_{- \pi}^\pi (\hat{f} (k))^\ell\,e^{i \k z}\,\frac{d k}{2 \pi}
+```
+で表せて、特に、$z = 0$（原点に戻る）の場合は
+```math
+P_\ell (0) = \int_{- \pi}^\pi (\hat{f} (k))^\ell\,\frac{d k}{2 \pi}
+```
+である。
 
 2. 再帰確率は原点に
