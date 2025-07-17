@@ -13,9 +13,12 @@ src/p_3.jlの内容は
 大雑把な流れを説明すると、
 
 1. 以下の3つを満たす確率変数$X_n$を考える：
-- $\mathbb{Z} \times \mathbb{Z} \times \mathbb{Z}$に値を取る
-- 独立かつ同分布（i.i.d. = independent idencally distributedという）
-- $P (X_n = (\pm 1, 0, 0)) = P (X_n = (0, \pm 1, 0)) = P (X_n = (0, 0, \pm 1)) = \frac{1}{6}$
+   - $\mathbb{Z} \times \mathbb{Z} \times \mathbb{Z}$に値を取る
+   - 独立かつ同分布（i.i.d. = independent idencally distributedという）
+   - $P (X_n = (\pm 1, 0, 0)) = P (X_n = (0, \pm 1, 0)) = P (X_n = (0, 0, \pm 1)) = \frac{1}{6}$
 
    このとき、確率過程$S_n (= \sum_{k = 1}^n X_k)$（単純ランダムウォークという）に対し
-   
+   ```math
+   P(S_n = 0 \text{となる} n \in \mathbb{Z}_+ \text{が存在})
+   ```
+   を再起確率という。
