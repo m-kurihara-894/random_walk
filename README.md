@@ -100,7 +100,7 @@ f (\vec{x}) =
 を用いると、
 原点から出発したランダムウォークが時刻 $` \ell `$ に点 $` \vec{z} = (z_!, z_2, z_3) `$ にいる確率 $` P_\ell (\vec{z}) `$ は $` \ell `$ 個の $` f (\vec{x}) = p_{(0, 0, 0), \vec{x}} `$ の畳み込み：
 ```math
-P_\ell (\vec{z}) = (f \ast f \ast \dots \ast f) (\vec{z}) = \int_{- \pi}^\pi \int_{- \pi}^\pi \int_{- \pi}^\pi (\hat{f} (\vec{k}))^\ell\,e^{i \vec{k} \cdot \vec{z}}\,\frac{d \vec{k}}{(2 \pi)^3}
+P_\ell (\vec{z}) = (f \ast f \ast \dots \ast f) (\vec{z}) = \int_{- \pi}^\pi \int_{- \pi}^\pi \int_{- \pi}^\pi (\hat{f} (\vec{k}))^\ell\,e^{i \vec{k} \cdot \vec{z}}\,\frac{d^3 \vec{k}}{(2 \pi)^3}
 ```
 で表せて、特に $` \vec{z} = (0, 0, 0) `$ の場合は
 ```math
@@ -114,7 +114,7 @@ P_\ell ((0, 0, 0)) = \int_{- \pi}^\pi \int_{- \pi}^\pi \int_{- \pi}^\pi (\hat{f}
 ```
 より
 ```math
-u (3) \equiv \sum_{\ell = 0}^\infty P_\ell ((0, 0, 0)) = \int_{- \pi}^\pi \int_{- \pi}^\pi \int_{- \pi}^\pi \frac{1}{1 - \hat{f} (\vec{k})}\,\frac{d \vec{k}}{(2 \pi)^3}  = \int_{- \pi}^\pi \int_{- \pi}^\pi \int_{- \pi}^\pi \frac{3}{3 - \cos k_1 - \cos k_2 - \cos k_3}\,\frac{d \vec{k}}{(2 \pi)^3}
+u (3) \equiv \sum_{\ell = 0}^\infty P_\ell ((0, 0, 0)) = \int_{- \pi}^\pi \int_{- \pi}^\pi \int_{- \pi}^\pi \frac{1}{1 - \hat{f} (\vec{k})}\,\frac{d^3 \vec{k}}{(2 \pi)^3}  = \int_{- \pi}^\pi \int_{- \pi}^\pi \int_{- \pi}^\pi \frac{3}{3 - \cos k_1 - \cos k_2 - \cos k_3}\,\frac{d^3 \vec{k}}{(2 \pi)^3}
 ```
 である。
 
@@ -139,7 +139,7 @@ Cubaを用いて $` u (3) `$ の値を求めるが、非積分関数が原点に
 ```
 と分けて、 $` B_\rho `$ において非積分関数を積分してみると
 ```math
-\int_{B_\rho} \frac{3}{3 - \cos k_1 - \cos k_2 - \cos k_3}\,\frac{d \vec{k}}{(2 \pi)^3} \leq \int_{B_\rho} \frac{6}{k_1^2 + k_2^2 + k_3^2}\,\frac{d \vec{k}}{(2 \pi)^3} = \frac{3 \rho}{\pi^2}
+\int_{B_\rho} \frac{3}{3 - \cos k_1 - \cos k_2 - \cos k_3}\,\frac{d^3 \vec{k}}{(2 \pi)^3} \leq \int_{B_\rho} \frac{6}{k_1^2 + k_2^2 + k_3^2}\,\frac{d^3 \vec{k}}{(2 \pi)^3} = \frac{3 \rho}{\pi^2}
 ```
 となるため、十分に小さい $` \rho `$ を取れば、原点近傍における積分の寄与は無視できる。
 
