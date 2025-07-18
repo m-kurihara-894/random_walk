@@ -1,6 +1,6 @@
 # random_walk
-## src/p_3.jlの解説
-src/p_3.jlは
+## src/rw_p3.jlの解説
+src/rw_p3.jlは
 
 - 理論的な側面
     - 資料1：https://www2.math.kyushu-u.ac.jp/~hara/lectures/02/pr-grad-all.pdf
@@ -150,4 +150,4 @@ Cubaを用いて $` u (3) `$ の値を求めるが、非積分関数が原点に
 ---
 
 ###  $` p (3) `$ の数値解
-p_3.jlを実行すると、 $` p (3) \approx 0.34 `$ となり、再帰確率が1ではないことが分かる。
+rw_p3.jlを実行すると、 $` p (3) \approx 0.34 `$ となり、再帰確率が1ではないことが分かる。
