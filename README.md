@@ -1,6 +1,6 @@
 # random_walk
-## src/rw_p3.jlの解説
-src/rw_p3.jlは
+## p3の解説
+p3は
 
 - 理論的な側面
     - 資料1：https://www2.math.kyushu-u.ac.jp/~hara/lectures/02/pr-grad-all.pdf
@@ -150,4 +150,19 @@ Cubaを用いて $` u (3) `$ の値を求めるが、非積分関数が原点に
 ---
 
 ###  $` p (3) `$ の数値解
-rw_p3.jlを実行すると、 $` p (3) \approx 0.34 `$ となり、再帰確率が1ではないことが分かる。
+p3を実行すると、 $` p (3) \approx 0.34 `$ となり、再帰確率が1ではないことが分かる。
+
+---
+
+---
+
+## simulate_rw, plot_rw_vs_diffusion_saveの使い方
+```julia
+include("random_walk.jl")        # モジュールファイルを読み込む
+using .random_walk               # モジュールを有効にする
+
+positions = random_walk.simulate_rw(100_000, 1000)
+file = random_walk.plot_rw_vs_diffusion_save(positions, 1000; filename="rw_vs_diff.png")
+println("保存しました：", file)
+```
+でランダムウォークと熱拡散方程式の比較ができる。
