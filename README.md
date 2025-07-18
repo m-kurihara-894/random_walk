@@ -158,7 +158,11 @@ p3を実行すると、 $` p (3) \approx 0.34 `$ となり、再帰確率が1で
 
 ## simulate_rw, plot_rw_vs_diffusion_saveの使い方
 ```julia
-include("random_walk.jl")        # モジュールファイルを読み込む
+using Pkg
+Pkg.activate(".")
+Pkg.instantiate()
+
+include("src/random_walk.jl")        # モジュールファイルを読み込む
 using .random_walk               # モジュールを有効にする
 
 positions = random_walk.simulate_rw(100_000, 1000)
