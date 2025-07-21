@@ -35,35 +35,47 @@ function p3()
 end
 
 # -----------------------------------------------
+# -----------------------------------------------
 
 # 1次元ランダムウォークと熱拡散方程式との対応を見たい。
 using Random, Distributions, Plots
 
 export simulate_rw, plot_rw_vs_diffusion_save
 
-function simulate_rw(n_particles::Int, n_steps::Int; Δx::Float64 = 1.0)
-    steps = rand([-1, 1], n_particles, n_steps)
+"""
+simulate_rw(n_particles::Int, n_steps::Int; Δx=1.0, p_right=0.5)
+
+n_particles 個の粒子が n_steps ステップランダムウォークする。
+各ステップで右に進む確率を p_right とする（デフォルトは対称 0.5）。
+"""
+function simulate_rw(n_particles::Int, n_steps::Int; Δx::Float64 = 1.0, p_right::Float64 = 0.5)
+    @assert 0.0 ≤ p_right ≤ 1.0 "p_right must be between 0.0 and 1.0"
+
+    # Bernoulli分布に従って 1（右）か -1（左）を選ぶ
+    bern = rand(Bernoulli(p_right), n_particles, n_steps)
+    steps = 2 .* bern .- 1  # 1 → +1, 0 → -1 に変換
     positions = sum(steps, dims=2) .* Δx
-    return vec(positions)
+    return vec(positions), p_right
 end
 
 """
-    plot_rw_vs_diffusion_save(positions::Vector{Float64}, n_steps::Int; Δx=1.0, Δt=1.0, filename="plot.png")
+plot_rw_vs_diffusion_save(positions::Vector{Float64}, n_steps::Int; Δx=1.0, Δt=1.0, filename="plot.png")
 
 ランダムウォークのヒストグラムと熱拡散方程式の解析解の分布を重ねて描画し、
 表示はせずにファイルへ保存します。
 """
-function plot_rw_vs_diffusion_save(positions::Vector{Float64}, n_steps::Int; Δx=1.0, Δt=1.0, filename="plot.png")
+function plot_rw_vs_diffusion_save(positions::Vector{Float64}, n_steps::Int, p_right::Float64; Δx=1.0, Δt=1.0, filename="plot.png")
     D = Δx^2 / (2Δt)
     σ² = 2D * n_steps * Δt
+    v = (2 * p_right - 1) * (Δx / Δt)
     x = range(minimum(positions)-10, maximum(positions)+10, length=1000)
-    pdf_gauss = pdf.(Normal(0, sqrt(σ²)), x)
+    pdf_gauss = pdf.(Normal(v * n_steps * Δt, sqrt(σ²)), x)
 
     plt = histogram(positions, bins=100, normalize=true, label="Random Walk", xlabel="x", ylabel="Probability")
     plot!(plt, x, pdf_gauss, lw=3, label="Diffusion Equation")
 
-    savefig(plt, filename)  # ファイルに保存
+    savefig(plt, filename)
     return filename
 end
 
-end # module
+end  # module

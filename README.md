@@ -162,11 +162,11 @@ using Pkg
 Pkg.activate(".")
 Pkg.instantiate()
 
-include("src/random_walk.jl")        # モジュールファイルを読み込む
-using .random_walk               # モジュールを有効にする
+include("src/random_walk.jl")
+using .random_walk
 
-positions = random_walk.simulate_rw(100_000, 1000)
-file = random_walk.plot_rw_vs_diffusion_save(positions, 1000; filename="rw_vs_diff.png")
+positions, p_right = simulate_rw(10000, 1000; p_right=0.55)  # 右に偏る確率が0.55のランダムウォーク
+file = random_walk.plot_rw_vs_diffusion_save(positions, 1000, p_right; filename="rw_vs_diff.png")
 println("保存しました：", file)
 ```
 でランダムウォークと熱拡散方程式の比較ができる。
