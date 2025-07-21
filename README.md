@@ -7,6 +7,8 @@
   - [数値計算のアイディア](https://github.com/m-kurihara-894/random_walk/tree/main?tab=readme-ov-file#cuba%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F-u-3-%E3%81%AE%E6%95%B0%E5%80%A4%E8%A7%A3%E3%81%A8%E3%82%A2%E3%82%A4%E3%83%87%E3%82%A3%E3%82%A2)
   - [実行結果](https://github.com/m-kurihara-894/random_walk/tree/main?tab=readme-ov-file#p-3-%E3%81%AE%E6%95%B0%E5%80%A4%E8%A7%A3)
 - [1次元単純ランダムウォークのシミュレーションと熱拡散方程式の解との比較](https://github.com/m-kurihara-894/random_walk/tree/main?tab=readme-ov-file#simulate_rw-plot_rw_vs_diffusion_save%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9)
+  - [理論式の導出](https://github.com/m-kurihara-894/random_walk/tree/main?tab=readme-ov-file#1%E6%AC%A1%E5%85%83%E5%8D%98%E7%B4%94%E3%83%A9%E3%83%B3%E3%83%80%E3%83%A0%E3%82%A6%E3%82%A9%E3%83%BC%E3%82%AF%E3%81%A8%E7%86%B1%E6%8B%A1%E6%95%A3%E6%96%B9%E7%A8%8B%E5%BC%8F)
+  - [実行結果](https://github.com/m-kurihara-894/random_walk/tree/main?tab=readme-ov-file#%E4%BD%BF%E3%81%84%E6%96%B9)
 
 をjuliaで実装した。
 
@@ -184,10 +186,14 @@ julia> random_walk.p3()
 ---
 
 ## simulate_rw, plot_rw_vs_diffusion_saveの解説
+plot_rw_vs_diffusion_saveはsimulate_rwでシミュレーションした1次元ランダムウォークを熱拡散方程式の基本解と比較することが目的のプログラムである。
+
+---
+
 ### 1次元単純ランダムウォークと熱拡散方程式
 1ステップ後（ $` \Delta t `$ 後）に右へ $` \Delta x `$ 進む確率が $` p `$ 、左へ $` \Delta x `$ 進む確率が $` 1 - p `$ である1次元単純ランダムウォーク：
 ```math
-u (x, t + \Delta t) = p u (x + \delta x, t) + (1 - p) u (x -  \delta x, t)
+u (x, t + \Delta t) = p\,u (x + \delta x, t) + (1 - p)\,u (x -  \delta x, t)
 ```
 を考える。
 
