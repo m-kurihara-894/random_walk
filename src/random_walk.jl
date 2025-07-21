@@ -69,8 +69,9 @@ function plot_rw_vs_diffusion_save(positions::Vector{Float64}, n_steps::Int, p_r
 
     plt = histogram(positions, bins=100, normalize=true, label="Random Walk", xlabel="x", ylabel="Probability")
     plot!(plt, x, pdf_gauss, lw=3, label="Diffusion Equation")
-    
-    annotate!(plt, (minimum(positions), maximum(pdf_gauss)), text("p_right = $(round(p_right, digits=3))", :left, 10, :black))
+
+    title!(plt, "Random Walk vs Diffusion (p_right = $(round(p_right, digits=2)))")
+
 
     savefig(plt, filename)
     return filename
