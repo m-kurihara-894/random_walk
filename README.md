@@ -206,6 +206,15 @@ u (x, t + \Delta t) = p\,u (x + \Delta x, t) + (1 - p)\,u (x -  \Delta x, t)
 \frac{\partial u}{\partial t} + v \frac{\partial u}{\partial x} = D \frac{\partial^2 u}{\partial x^2}
 ```
 を得る。
+
+熱拡散方程式の初期条件として、Diracのデルタ関数 $` u(x, 0) = \delta (x) `$ を与える（これは、ランダムウォークの初期値を0にしたときに相当する）と、基本解は
+```math
+u (x, t) = \frac{1}{\sqrt{4 \pi D t}} \exp \Big( - \frac{(x - v t)^2}{4 D t} \Big)
+```
+となる。
+
+この基本解は、拡散の効果により、Gaussian的に拡がりをもち、移流速度によって波全体が $` v t `$ だけ移動すると解釈できる。
+
 ---
 
 ### 使い方
