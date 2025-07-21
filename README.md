@@ -224,7 +224,7 @@ u (x, t) = \frac{1}{\sqrt{4 \pi D t}} \exp \Big( - \frac{(x - v t)^2}{4 D t} \Bi
 julia> using random_walk
 ```
 
-以下のコードは基本的には省略可だが、環境（WSL等）に応じて描画が上手くいかない場合のおまじない（描画バックエンドをGUIを使わないものに変更している）：
+以下のコードは基本的には省略可だが、環境（WSL等）に応じて描画が上手くいかない場合のおまじない（描画バックエンドをGUIを使わないものに変更している、今回はrandom_walk.jlの中で宣言しておいた）：
 ```julia
 julia> using Plots
 julia> gr()
@@ -233,8 +233,8 @@ julia> ENV["GKSwstype"] = "100"  # オフスクリーン描画
 
 最後に以下のコードを実行することで、シミュレーションとグラフによる比較ができる：
 ```julia
-julia> positions, p_right = simulate_rw(10000, 1000; p_right=0.55)  # 右に偏る確率が0.55のランダムウォーク
-julia> file = random_walk.plot_rw_vs_diffusion_save(positions, 1000, p_right; filename="rw_vs_diff.png") # 熱拡散方程式の解との比較を表したグラフ
+julia> positions, n_particles, n_steps, p_right = simulate_rw(10000, 1000; p_right=0.55)  # 粒子数10000、1000ステップ、右に偏る確率が0.55のランダムウォーク
+julia> file = random_walk.plot_rw_vs_diffusion_save(positions, n_steps, p_right, n_particles; filename="rw_vs_diff.png") # 熱拡散方程式の解との比較を表したグラフ
 
 julia> println("保存しました：", file)
 ```

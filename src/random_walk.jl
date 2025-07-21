@@ -53,13 +53,13 @@ function simulate_rw(n_particles::Int, n_steps::Int; Δx::Float64 = 1.0, p_right
     bern = rand(Bernoulli(p_right), n_particles, n_steps)
     steps = 2 .* bern .- 1  # 1 → +1, 0 → -1 に変換
     positions = sum(steps, dims=2) .* Δx
-    return vec(positions), p_right
+    return vec(positions), n_particles, n_steps, p_right
 end
 
 """
 ランダムウォークのヒストグラムと熱拡散方程式の解析解の分布を重ねて描画し、ファイルへ保存。
 """
-function plot_rw_vs_diffusion_save(positions::Vector{Float64}, n_steps::Int, p_right::Float64; Δx=1.0, Δt=1.0, filename="plot.png")
+function plot_rw_vs_diffusion_save(positions::Vector{Float64}, n_steps::Int, p_right::Float64, n_particles::Int = length(positions); Δx=1.0, Δt=1.0, filename="plot.png")
     # 移流拡散方程式（初期条件 u (x, 0) = δ (x) の場合、基本解は u (x, t) = 1 / √(4 π D t) exp (- (x - v t)^2 / (4 D t)) である）
     D = Δx^2 / (2Δt)
     σ² = 2D * n_steps * Δt
@@ -67,11 +67,26 @@ function plot_rw_vs_diffusion_save(positions::Vector{Float64}, n_steps::Int, p_r
     x = range(minimum(positions)-10, maximum(positions)+10, length=1000)
     pdf_gauss = pdf.(Normal(v * n_steps * Δt, sqrt(σ²)), x)
 
-    plt = histogram(positions, bins=100, normalize=true, label="Random Walk", xlabel="x", ylabel="Probability")
+    plt = histogram(positions, bins=100, normalize=:pdf, label="Random Walk", xlabel="x", ylabel="Probability")
     plot!(plt, x, pdf_gauss, lw=3, label="Diffusion Equation")
 
-    title!(plt, "Random Walk vs Diffusion (p_right = $(round(p_right, digits=2)))")
+    # ボックスの位置とサイズ
+    x_box = maximum(x) *0.8
+    y_box = maximum(pdf_gauss) * 0.9
+    box_width = maximum(x) * 0.5
+    box_height = maximum(pdf_gauss) * 0.2
 
+    # 枠線の四角形を plot!
+    plot!(Shape([x_box, x_box+box_width, x_box+box_width, x_box], 
+                [y_box, y_box, y_box+box_height, y_box+box_height]), 
+        linecolor=:black, fillcolor = :white, fillalpha=0.1, label="")
+
+    # テキストを中に入れる
+    annotate!(plt, x_box + box_width * 0.1, y_box + box_height * 0.80, text("particles = $n_particles", :left, 7))
+    annotate!(plt, x_box + box_width * 0.1, y_box + box_height * 0.50, text("steps = $n_steps", :left, 7))
+    annotate!(plt, x_box + box_width * 0.1, y_box + box_height * 0.20, text("p_right = $(round(p_right, digits=2))", :left, 7))
+
+    title!(plt, "Random Walk vs Diffusion")
 
     savefig(plt, filename)
     return filename
