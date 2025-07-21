@@ -1,6 +1,5 @@
 # random_walk
-- 協力者
-  - k-pine-su：https://github.com/k-pine-su/randomwalk
+- 協力者：[k-pine-su](https://github.com/k-pine-su/randomwalk)
 
 ## 概要
 - [3次元対称単純ランダムウォークの再帰確率 $` p (3) `$ の数値計算](https://github.com/m-kurihara-894/random_walk/tree/main?tab=readme-ov-file#p3%E3%81%AE%E8%A7%A3%E8%AA%AC)
@@ -23,7 +22,7 @@ p3は
 - 数値結果
     - 資料2：https://mathworld.wolfram.com/PolyasRandomWalkConstants.html
 
-に基づき、3次元対称単純ランダムウォークの再帰確率（有限回数で再び原点に戻る確率）を数値的に求めることが目的である。
+に基づき、3次元対称単純ランダムウォークの再帰確率（有限回数で再び原点に戻る確率） $` p (3) `$ を数値的に求めることが目的のプログラムである。
 
 ---
 
@@ -159,30 +158,56 @@ Cubaを用いて $` u (3) `$ の値を求めるが、非積分関数が原点に
 ```
 となるため、十分に小さい $` \rho `$ を取れば、原点近傍における積分の寄与は無視できる。
 
-そのため、p_3.jlにおいては、場合分けで発散する点の値を0としている。
+そのため、p3においては、場合分けで発散する点の値を0としている。
 
 また、Cubaは積分区間が $` [0, 1] \times [0, 1] \times [0, 1] `$ となっているため、適当な変数変換を行い、後でJacobianを乗じている。
 
 ---
 
 ###  $` p (3) `$ の数値解
-p3を実行すると、 $` p (3) \approx 0.34 `$ となり、再帰確率が1ではないことが分かる。
-
----
-
----
-
-## simulate_rw, plot_rw_vs_diffusion_saveの使い方
+p3を実行する：
 ```julia
-using Pkg
-Pkg.activate(".")
-Pkg.instantiate()
+(@v1.11) pkg> activate .
 
-include("src/random_walk.jl")
-using .random_walk
+julia> import random_walk
+
+julia> random_walk.u3_cuba()
+(1.5163840716236674, 1.5121509978460541e-6) # (val, err)
+
+julia> random_walk.p3()
+0.3405364651916645
+```
+ $` p (3) \approx 0.34 `$ となり、再帰確率が1ではないことが分かる。
+
+---
+
+---
+
+## simulate_rw, plot_rw_vs_diffusion_saveの解説
+### 1次元単純ランダムウォークと熱拡散方程式
+1ステップ後（ $` \Delta t `$ 後）に右へ $` \Delta x `$ 進む確率が $` p `$ 、左へ $` \Delta x `$ 進む確率が $` 1 - p `$ である1次元単純ランダムウォーク：
+```math
+u (x, t + \Delta t) = p u (x + \delta x, t) + (1 - p) u (x -  \delta x, t)
+```
+を考える。
+
+
+---
+
+### 使い方
+```julia
+(@v1.11) pkg> activate .
+
+julia> import random_walk
+
+import random_walk
+
+using random_walk
 
 positions, p_right = simulate_rw(10000, 1000; p_right=0.55)  # 右に偏る確率が0.55のランダムウォーク
-file = random_walk.plot_rw_vs_diffusion_save(positions, 1000, p_right; filename="rw_vs_diff.png")
+
+file = random_walk.plot_rw_vs_diffusion_save(positions, 1000, p_right; filename="rw_vs_diff.png") # 熱拡散方程式の解との比較を表したグラフ
+
 println("保存しました：", file)
 ```
 でランダムウォークと熱拡散方程式の比較ができる。
