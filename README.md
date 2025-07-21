@@ -3,8 +3,8 @@
   - k-pine-su：https://github.com/k-pine-su/randomwalk
 
 ## 概要
-- 3次元ランダムウォークの再帰確率 $` p (3) `$ の数値計算
-- 1次元ランダムウォークのシミュレーションと熱拡散方程式の解との比較
+- [3次元対称単純ランダムウォークの再帰確率 $` p (3) `$ の数値計算](https://github.com/m-kurihara-894/random_walk/tree/main?tab=readme-ov-file#p3%E3%81%AE%E8%A7%A3%E8%AA%AC)
+- [1次元単純ランダムウォークのシミュレーションと熱拡散方程式の解との比較](https://github.com/m-kurihara-894/random_walk/tree/main?tab=readme-ov-file#simulate_rw-plot_rw_vs_diffusion_save%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9)
 をjuliaで実装した。
 
 ---
