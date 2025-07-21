@@ -234,3 +234,5 @@ file = random_walk.plot_rw_vs_diffusion_save(positions, 1000, p_right; filename=
 println("保存しました：", file)
 ```
 でランダムウォークと熱拡散方程式の比較ができる。
+
+![rw_vs_diff.png](https://github.com/m-kurihara-894/random_walk/blob/main/rw_vs_diff.png?raw=true)
