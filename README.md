@@ -171,7 +171,7 @@ p3を実行する：
 ```julia
 (@v1.11) pkg> activate .
 
-julia> import random_walk
+julia> using random_walk
 
 julia> random_walk.u3_cuba()
 (1.5163840716236674, 1.5121509978460541e-6) # (val, err)
@@ -221,17 +221,20 @@ u (x, t) = \frac{1}{\sqrt{4 \pi D t}} \exp \Big( - \frac{(x - v t)^2}{4 D t} \Bi
 ```julia
 (@v1.11) pkg> activate .
 
-julia> import random_walk
+julia> using random_walk
 
-import random_walk
+julia> positions, p_right = simulate_rw(10000, 1000; p_right=0.55)  # 右に偏る確率が0.55のランダムウォーク
+```
+基本的には省略可だが、環境（WSL等）に応じて描画が上手くいかない場合のおまじない（描画バックエンドをGUIを使わないものに変更している）：
+```julia
+using Plots
+gr()
+ENV["GKSwstype"] = "100"  # オフスクリーン描画
+```
+```julia
+julia> file = random_walk.plot_rw_vs_diffusion_save(positions, 1000, p_right; filename="rw_vs_diff.png") # 熱拡散方程式の解との比較を表したグラフ
 
-using random_walk
-
-positions, p_right = simulate_rw(10000, 1000; p_right=0.55)  # 右に偏る確率が0.55のランダムウォーク
-
-file = random_walk.plot_rw_vs_diffusion_save(positions, 1000, p_right; filename="rw_vs_diff.png") # 熱拡散方程式の解との比較を表したグラフ
-
-println("保存しました：", file)
+julia> println("保存しました：", file)
 ```
 でランダムウォークと熱拡散方程式の比較ができる。
 
