@@ -224,7 +224,7 @@ u (x, t) = \frac{1}{\sqrt{4 \pi D t}} \exp \Big( - \frac{(x - v t)^2}{4 D t} \Bi
 julia> using random_walk
 ```
 
-以下のコードは基本的には省略可だが、環境（WSL等）に応じて描画が上手くいかない場合のおまじない（描画バックエンドをGUIを使わないものに変更している、今回はrandom_walk.jlの中で宣言しておいた）：
+以下のコードは基本的には省略可だが、環境（WSL等）に応じて描画が上手くいかない場合のおまじない（描画バックエンドをGUIを使わないものに変更している）：
 ```julia
 julia> using Plots
 julia> gr()
