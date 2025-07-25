@@ -201,7 +201,7 @@ u (x, t + \Delta t) = p\,u (x - \Delta x, t) + (1 - p)\,u (x + \Delta x, t)
 
 ここで、 $` \Delta t `$ に関しては1次、$` \Delta x `$ に関しては2次までTaylor展開すると
 ```math
-\frac{\partial u}{\partial t} + (1 - 2 p) \frac{\Delta x}{\Delta t} \frac{\partial u}{\partial x} = \frac{(\Delta x)^2}{2 \Delta t} \frac{\partial^2 u}{\partial x^2}
+\frac{\partial u}{\partial t} + (2 p - 1) \frac{\Delta x}{\Delta t} \frac{\partial u}{\partial x} = \frac{(\Delta x)^2}{2 \Delta t} \frac{\partial^2 u}{\partial x^2}
 ```
 と表せ、移流速度 $` v \equiv (2 p - 1) \frac{\Delta x}{\Delta t} `$ （今、 $` q = 1 - p `$ とした結果、 $`p - q = 2 p - 1`$ となるので、 $` x `$ 正方向に行く確率と $` x `$ 負方向に行く確率との差が移流速度に対応していると解釈できる）、拡散係数 $`D \equiv \frac{(\Delta x)^2}{2 \Delta t} `$ を導入すると、熱拡散方程式：
 ```math
