@@ -193,17 +193,17 @@ plot_rw_vs_diffusion_saveはsimulate_rwでシミュレーションした1次元�
 ---
 
 ### 1次元単純ランダムウォークと熱拡散方程式
-1ステップ後（ $` \Delta t `$ 後）に右へ $` \Delta x `$ 進む確率が $` p `$ 、左へ $` \Delta x `$ 進む確率が $` 1 - p `$ である1次元単純ランダムウォーク：
+1ステップ後（ $` \Delta t `$ 後）に右へ $` \Delta x `$ 進む確率が $` p `$ 、左へ $` \Delta x `$ 進む確率が $` q = 1 - p `$ である1次元単純ランダムウォーク：
 ```math
-u (x, t + \Delta t) = p\,u (x + \Delta x, t) + (1 - p)\,u (x -  \Delta x, t)
+u (x, t + \Delta t) = p\,u (x - \Delta x, t) + (1 - p)\,u (x + \Delta x, t)
 ```
 を考える。
 
 ここで、 $` \Delta t `$ に関しては1次、$` \Delta x `$ に関しては2次までTaylor展開すると
 ```math
-\frac{\partial u}{\partial t} + (1 - 2p) \frac{\Delta x}{\Delta t} \frac{\partial u}{\partial x} = \frac{(\Delta x)^2}{2 \Delta t} \frac{\partial^2 u}{\partial x^2}
+\frac{\partial u}{\partial t} + (1 - 2 p) \frac{\Delta x}{\Delta t} \frac{\partial u}{\partial x} = \frac{(\Delta x)^2}{2 \Delta t} \frac{\partial^2 u}{\partial x^2}
 ```
-と表せ、移流速度 $` v \equiv (1 - 2p) \frac{\Delta x}{\Delta t} `$ （今、 $` q = 1 - p `$ とした結果、 $`p - q = 2 p - 1`$ となるので、 $` x `$ 正方向に行く確率と $` x `$ 負方向に行く確率との差が移流速度に対応していると解釈できる）、拡散係数 $`D \equiv \frac{(\Delta x)^2}{2 \Delta t} `$ を導入すると、熱拡散方程式：
+と表せ、移流速度 $` v \equiv (2 p - 1) \frac{\Delta x}{\Delta t} `$ （今、 $` q = 1 - p `$ とした結果、 $`p - q = 2 p - 1`$ となるので、 $` x `$ 正方向に行く確率と $` x `$ 負方向に行く確率との差が移流速度に対応していると解釈できる）、拡散係数 $`D \equiv \frac{(\Delta x)^2}{2 \Delta t} `$ を導入すると、熱拡散方程式：
 ```math
 \frac{\partial u}{\partial t} + v \frac{\partial u}{\partial x} = D \frac{\partial^2 u}{\partial x^2}
 ```
