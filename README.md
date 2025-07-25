@@ -115,7 +115,7 @@ f (\vec{x}) =
 (f \ast g) (\vec{x}) \equiv \sum_{\vec{y} \in \mathbb{Z} \times \mathbb{Z} \times \mathbb{Z}} f (\vec{x} - \vec{y}) g (\vec{y})
 ```
 を用いると、
-原点から出発したランダムウォークが時刻 $` \ell `$ に点 $` \vec{z} = (z_!, z_2, z_3) `$ にいる確率 $` P_\ell (\vec{z}) `$ は $` \ell `$ 個の $` f (\vec{x}) = p_{(0, 0, 0), \vec{x}} `$ の畳み込み：
+原点から出発したランダムウォークが時刻 $` \ell `$ に点 $` \vec{z} = (z_1, z_2, z_3) `$ にいる確率 $` P_\ell (\vec{z}) `$ は $` \ell `$ 個の $` f (\vec{x}) = p_{(0, 0, 0), \vec{x}} `$ の畳み込み：
 ```math
 P_\ell (\vec{z}) = (f \ast f \ast \dots \ast f) (\vec{z}) = \int_{- \pi}^\pi \int_{- \pi}^\pi \int_{- \pi}^\pi (\hat{f} (\vec{k}))^\ell\,e^{i \vec{k} \cdot \vec{z}}\,\frac{d^3 \vec{k}}{(2 \pi)^3}
 ```
