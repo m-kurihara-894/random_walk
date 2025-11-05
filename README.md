@@ -108,7 +108,7 @@ f (\vec{x}) =
 
 格子点 $` \vec{x} \in \mathbb{Z} \times \mathbb{Z} \times \mathbb{Z} `$ で定義された関数 $` f (\vec{x}) `$ と $` \vec{k} \in [- \pi, \pi] \times [- \pi, \pi] \times [- \pi, \pi] `$ に対するFourier変換（ $` \vec{k} = (k_1, k_2, k_3) `$ とした）：
 ```math
-\hat{f} (\vec{k}) \equiv \sum_{\vec{x} \in \mathbb{Z} \times \mathbb{Z} \times \mathbb{Z}} e^{- i \vec{k} \vec{x}} f (\vec{x}), \quad f (\vec{x}) \equiv \int_{- \pi}^\pi \int_{- \pi}^\pi \int_{- \pi}^\pi \hat{f} (\vec{k})\,e^{i \vec{k} \cdot \vec{x}}\,\frac{d^3 \vec{k}}{(2 \pi)^3}
+\hat{f} (\vec{k}) \equiv \sum_{\vec{x} \in \mathbb{Z} \times \mathbb{Z} \times \mathbb{Z}} e^{- i \vec{k} \cdot \vec{x}} f (\vec{x}), \quad f (\vec{x}) \equiv \int_{- \pi}^\pi \int_{- \pi}^\pi \int_{- \pi}^\pi \hat{f} (\vec{k})\,e^{i \vec{k} \cdot \vec{x}}\,\frac{d^3 \vec{k}}{(2 \pi)^3}
 ```
 における畳み込み：
 ```math
